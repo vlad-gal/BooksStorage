@@ -1,17 +1,16 @@
-package by.halatsevich.storage.generator;
+package by.halatsevich.storage.model.util;
 
 public class IdGenerator {
     private static final long MAX_ID = 1000;
-    private static long id;
+    private static long id = 1;
 
     private IdGenerator(){
     }
 
     public static long generateId(){
         if (id >= MAX_ID){
-            id = 0;
+            id = 1;
         }
         return id++;
     }
-
 }

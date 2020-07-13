@@ -1,6 +1,6 @@
-package by.halatsevich.storage.entity;
+package by.halatsevich.storage.model.entity;
 
-import by.halatsevich.storage.generator.IdGenerator;
+import by.halatsevich.storage.model.util.IdGenerator;
 
 import java.util.List;
 
@@ -80,9 +80,6 @@ public class Book {
         }
 
         Book book = (Book) o;
-        if (bookId != book.bookId) {
-            return false;
-        }
         if (pages != book.pages) {
             return false;
         }
@@ -99,7 +96,6 @@ public class Book {
     public int hashCode() {
         int prime = 31;
         int result = 1;
-        result = (int) (prime * result + bookId);
         result = prime * result + name.hashCode();
         result = prime * result + authors.hashCode();
         result = prime * result + pages;

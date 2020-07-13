@@ -1,6 +1,7 @@
-package by.halatsevich.storage.comparator;
+package by.halatsevich.storage.model.util;
 
-import by.halatsevich.storage.entity.Book;
+import by.halatsevich.storage.model.type.SortingTag;
+import by.halatsevich.storage.model.entity.Book;
 
 import java.util.Comparator;
 
@@ -12,7 +13,7 @@ public class BookComparator implements Comparator<Book> {
         this.sortingTag.setAscend(ascend);
     }
 
-    public void setSortingTag(SortingTag sortingTag, boolean ascend) {
+    public void setSortingType(SortingTag sortingTag, boolean ascend) {
         if (sortingTag == null) {
             sortingTag = SortingTag.BOOK_ID;
         }
@@ -20,7 +21,7 @@ public class BookComparator implements Comparator<Book> {
         this.sortingTag.setAscend(ascend);
     }
 
-    public SortingTag getSortingTag() {
+    public SortingTag getSortingType() {
         return sortingTag;
     }
 
@@ -51,9 +52,9 @@ public class BookComparator implements Comparator<Book> {
                 break;
             case PRICE:
                 if (sortingTag.isAscend()) {
-                    compareResult = o1.getPages() - o2.getPages();
+                    compareResult = Double.compare(o1.getPrice(),o2.getPrice());
                 } else {
-                    compareResult = o2.getPages() - o1.getPages();
+                    compareResult = Double.compare(o2.getPrice(),o1.getPrice());
                 }
                 break;
             case AUTHORS:

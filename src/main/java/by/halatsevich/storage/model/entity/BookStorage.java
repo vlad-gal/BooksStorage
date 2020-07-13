@@ -1,13 +1,15 @@
-package by.halatsevich.storage.entity;
+package by.halatsevich.storage.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookStorage {
     private static BookStorage instance;
-    private List<Book> storage = new ArrayList<>();
+    private static final int MAX_CAPACITY = 500;
+    private List<Book> storage;
 
     private BookStorage() {
+        storage = new ArrayList<>();
     }
 
     public static BookStorage getInstance() {
@@ -18,6 +20,9 @@ public class BookStorage {
     }
 
     public boolean addBook(Book book) {
+        if (storage.size() >= MAX_CAPACITY) {
+            return false;
+        }
         return storage.add(book);
     }
 
