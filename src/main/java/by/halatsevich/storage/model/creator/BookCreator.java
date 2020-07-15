@@ -14,7 +14,7 @@ public class BookCreator {
     private static final String BOOK_PRICE = "price";
     private static final String REGEX_DELIMITER = ", ";
 
-    public Book createBook(Map<String,String> bookData) {
+    public Book createBook(Map<String, String> bookData) {
         String name = bookData.get(BOOK_NAME);
         String[] splitAuthors = bookData.get(BOOK_AUTHORS).split(REGEX_DELIMITER);
         List<String> authors = new ArrayList<>();

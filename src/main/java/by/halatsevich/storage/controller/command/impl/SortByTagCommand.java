@@ -1,9 +1,9 @@
 package by.halatsevich.storage.controller.command.impl;
 
 import by.halatsevich.storage.controller.command.Command;
+import by.halatsevich.storage.model.comparator.type.SortingTag;
 import by.halatsevich.storage.model.entity.Book;
 import by.halatsevich.storage.model.service.BookService;
-import by.halatsevich.storage.model.type.SortingTag;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,11 +21,11 @@ public class SortByTagCommand implements Command {
         SortingTag tag;
         try {
             tag = SortingTag.valueOf(sortingTag);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             tag = SortingTag.NAME;
         }
         boolean ascend = Boolean.parseBoolean(sortingAscend);
-        BookService bookService = new BookService();
+        BookService bookService = BookService.getInstance();
         Map<String, String> result = new HashMap<>();
         List<Book> books = bookService.sortBooksByTagIntoStorage(tag, ascend);
         result.put(RESULT_KEY, Arrays.toString(books.toArray()));

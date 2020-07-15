@@ -1,6 +1,6 @@
-package by.halatsevich.storage.model.util;
+package by.halatsevich.storage.model.comparator;
 
-import by.halatsevich.storage.model.type.SortingTag;
+import by.halatsevich.storage.model.comparator.type.SortingTag;
 import by.halatsevich.storage.model.entity.Book;
 
 import java.util.Comparator;
@@ -52,9 +52,9 @@ public class BookComparator implements Comparator<Book> {
                 break;
             case PRICE:
                 if (sortingTag.isAscend()) {
-                    compareResult = Double.compare(o1.getPrice(),o2.getPrice());
+                    compareResult = Double.compare(o1.getPrice(), o2.getPrice());
                 } else {
-                    compareResult = Double.compare(o2.getPrice(),o1.getPrice());
+                    compareResult = Double.compare(o2.getPrice(), o1.getPrice());
                 }
                 break;
             case AUTHORS:

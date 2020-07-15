@@ -1,6 +1,6 @@
-package by.halatsevich.storage.model.exception;
+package by.halatsevich.storage.exception;
 
-public class ServiceException extends Exception{
+public class ServiceException extends Exception {
     public ServiceException() {
     }
 

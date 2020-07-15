@@ -1,17 +1,28 @@
 package by.halatsevich.storage.model.dao.impl;
 
+import by.halatsevich.storage.exception.DaoException;
+import by.halatsevich.storage.model.comparator.BookComparator;
+import by.halatsevich.storage.model.comparator.type.SortingTag;
 import by.halatsevich.storage.model.dao.BookStorageDao;
 import by.halatsevich.storage.model.entity.Book;
 import by.halatsevich.storage.model.entity.BookStorage;
-import by.halatsevich.storage.model.exception.DaoException;
-import by.halatsevich.storage.model.type.SortingTag;
-import by.halatsevich.storage.model.util.BookComparator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class BookStorageDaoImpl implements BookStorageDao {
+    private static BookStorageDaoImpl instance;
+
+    private BookStorageDaoImpl() {
+    }
+
+    public static BookStorageDaoImpl getInstance() {
+        if (instance == null) {
+            return new BookStorageDaoImpl();
+        }
+        return instance;
+    }
 
     @Override
     public boolean addBook(Book book) throws DaoException {
@@ -25,13 +36,34 @@ public class BookStorageDaoImpl implements BookStorageDao {
     }
 
     @Override
-    public boolean removeBook(Book book) throws DaoException {
+    public boolean removeBookById(long id) throws DaoException {
         BookStorage bookStorage = BookStorage.getInstance();
-        if (bookStorage.removeBook(book)) {
-            return true;
-        } else {
+        for (int i = 0; i < bookStorage.size(); i++) {
+            Book book = bookStorage.getBook(i);
+            if (book.getBookId() == id) {
+                return bookStorage.removeBook(book);
+            }
+        }
+        throw new DaoException("Book was not found in a storage");
+    }
+
+    @Override
+    public boolean removeBooksByName(String name) throws DaoException {
+        BookStorage bookStorage = BookStorage.getInstance();
+        List<Book> removedBooks = new ArrayList<>();
+        for (int i = 0; i < bookStorage.size(); i++) {
+            Book book = bookStorage.getBook(i);
+            if (book.getName().equals(name)) {
+                removedBooks.add(book);
+            }
+        }
+        if (removedBooks.isEmpty()) {
             throw new DaoException("Book was not found in a storage");
         }
+        for (Book book : removedBooks) {
+            bookStorage.removeBook(book);
+        }
+        return true;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package by.halatsevich.storage.model.exception;
+package by.halatsevich.storage.exception;
 
 public class DaoException extends Exception {
     public DaoException() {

@@ -4,7 +4,6 @@ import java.util.List;
 
 public class BookValidator {
     private static final int MIN_NAME_LENGTH = 1;
-    private static final int MIN_COUNT_AUTHORS = 1;
     private static final int MIN_PAGES = 1;
     private static final double MIN_PRICE = 0.1;
 

@@ -1,4 +1,4 @@
-package by.halatsevich.storage.model.type;
+package by.halatsevich.storage.model.comparator.type;
 
 public enum SortingTag {
     BOOK_ID(true), NAME(true), AUTHORS(true), PAGE(true), PRICE(true);

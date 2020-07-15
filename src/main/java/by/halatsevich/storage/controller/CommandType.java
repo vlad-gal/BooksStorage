@@ -5,7 +5,8 @@ import by.halatsevich.storage.controller.command.impl.*;
 
 public enum CommandType {
     ADD_BOOK(new AddBookCommand()),
-    REMOVE_BOOK(new RemoveBookCommand()),
+    REMOVE_BOOK_BY_ID(new RemoveBookByIdCommand()),
+    REMOVE_BOOKS_BY_NAME(new RemoveBooksByNameCommand()),
     SORT_BY_TAG(new SortByTagCommand()),
     FIND_BY_ID(new FindByIdCommand()),
     FIND_BY_NAME(new FindByNameCommand()),
