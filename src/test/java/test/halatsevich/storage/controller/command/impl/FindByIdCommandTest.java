@@ -46,7 +46,8 @@ public class FindByIdCommandTest {
     public void testExecuteSuccess() {
         Map<String, String> actual = command.execute(bookParameters);
         Map<String, String> expected = new HashMap<>();
-        expected.put("result of command ->", "Book{bookId=1, name='Name1', authors=[Author 1, Author 2], pages=111, price=45.9}");
+        expected.put("result of command ->",
+                "Book{bookId=1, name='Name1', authors=[Author 1, Author 2], pages=111, price=45.9}");
         assertEquals(actual, expected);
     }
 
@@ -55,7 +56,8 @@ public class FindByIdCommandTest {
         bookParameters.put("id", "1000");
         Map<String, String> actual = command.execute(bookParameters);
         Map<String, String> expected = new HashMap<>();
-        expected.put("result of command ->", "Book with this id was not found");
+        expected.put("result of command ->",
+                "by.halatsevich.storage.exception.DaoException: Book with this id was not found");
         assertEquals(actual, expected);
     }
 }

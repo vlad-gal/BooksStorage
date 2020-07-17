@@ -2,7 +2,7 @@ package by.halatsevich.storage.model.dao.impl;
 
 import by.halatsevich.storage.exception.DaoException;
 import by.halatsevich.storage.model.comparator.BookComparator;
-import by.halatsevich.storage.model.comparator.type.SortingTag;
+import by.halatsevich.storage.model.comparator.SortingTag;
 import by.halatsevich.storage.model.dao.BookStorageDao;
 import by.halatsevich.storage.model.entity.Book;
 import by.halatsevich.storage.model.entity.BookStorage;

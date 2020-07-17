@@ -46,7 +46,8 @@ public class FindByAuthorsCommandTest {
     public void testExecuteSuccess() {
         Map<String, String> actual = command.execute(bookParameters);
         Map<String, String> expected = new HashMap<>();
-        expected.put("result of command ->", "[Book{bookId=1, name='Name1', authors=[Author 1, Author 2], pages=111, price=45.9}]");
+        expected.put("result of command ->",
+                "[Book{bookId=1, name='Name1', authors=[Author 1, Author 2], pages=111, price=45.9}]");
         assertEquals(actual, expected);
     }
 

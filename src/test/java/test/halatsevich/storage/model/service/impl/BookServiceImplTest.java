@@ -1,9 +1,9 @@
-package test.halatsevich.storage.model.service;
+package test.halatsevich.storage.model.service.impl;
 
 import by.halatsevich.storage.exception.ServiceException;
-import by.halatsevich.storage.model.comparator.type.SortingTag;
+import by.halatsevich.storage.model.comparator.SortingTag;
 import by.halatsevich.storage.model.entity.Book;
-import by.halatsevich.storage.model.service.BookService;
+import by.halatsevich.storage.model.service.impl.BookServiceImpl;
 import by.halatsevich.storage.model.util.IdGenerator;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,8 +16,8 @@ import java.util.Map;
 
 import static org.testng.Assert.*;
 
-public class BookServiceTest {
-    BookService service = null;
+public class BookServiceImplTest {
+    BookServiceImpl service = null;
     Map<String, String> bookParameters = new HashMap<>();
     Map<String, String> bookParameters1 = new HashMap<>();
     Map<String, String> bookParameters2 = new HashMap<>();
@@ -30,7 +30,7 @@ public class BookServiceTest {
     @BeforeMethod
     public void setUp() throws ServiceException {
         IdGenerator.setId(1);
-        service = BookService.getInstance();
+        service = BookServiceImpl.getInstance();
         bookParameters.put("name", "Планирование в аудите");
         bookParameters.put("authors", "С.М. Бычкова, А.В. Газорян");
         bookParameters.put("price", "594.0");

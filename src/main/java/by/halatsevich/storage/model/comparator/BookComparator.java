@@ -1,6 +1,5 @@
 package by.halatsevich.storage.model.comparator;
 
-import by.halatsevich.storage.model.comparator.type.SortingTag;
 import by.halatsevich.storage.model.entity.Book;
 
 import java.util.Comparator;

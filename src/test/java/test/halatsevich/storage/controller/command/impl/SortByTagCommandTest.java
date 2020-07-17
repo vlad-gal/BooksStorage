@@ -47,7 +47,8 @@ public class SortByTagCommandTest {
     public void testExecuteSuccess() {
         Map<String, String> actual = command.execute(bookParameters);
         Map<String, String> expected = new HashMap<>();
-        expected.put("result of command ->", "[Book{bookId=2, name='Name2', authors=[Author 1], pages=75, price=49.0}, " +
+        expected.put("result of command ->",
+                "[Book{bookId=2, name='Name2', authors=[Author 1], pages=75, price=49.0}, " +
                 "Book{bookId=1, name='Name1', authors=[Author 1, Author 2], pages=111, price=45.9}]");
         assertEquals(actual, expected);
     }
@@ -58,7 +59,8 @@ public class SortByTagCommandTest {
         bookParameters.put("ascend", "true");
         Map<String, String> actual = command.execute(bookParameters);
         Map<String, String> expected = new HashMap<>();
-        expected.put("result of command ->", "[Book{bookId=1, name='Name1', authors=[Author 1, Author 2], pages=111, price=45.9}, " +
+        expected.put("result of command ->",
+                "[Book{bookId=1, name='Name1', authors=[Author 1, Author 2], pages=111, price=45.9}, " +
                 "Book{bookId=2, name='Name2', authors=[Author 1], pages=75, price=49.0}]");
         assertEquals(actual, expected);
     }

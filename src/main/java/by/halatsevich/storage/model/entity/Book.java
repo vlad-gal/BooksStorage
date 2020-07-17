@@ -1,5 +1,7 @@
 package by.halatsevich.storage.model.entity;
 
+import by.halatsevich.storage.model.util.IdGenerator;
+
 import java.util.List;
 
 public class Book {
@@ -18,6 +20,7 @@ public class Book {
     }
 
     public Book(String name, List<String> authors, int pages, double price) {
+        this.bookId = IdGenerator.generateId();
         this.name = name;
         this.authors = authors;
         this.pages = pages;

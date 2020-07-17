@@ -1,7 +1,5 @@
 package by.halatsevich.storage.model.entity;
 
-import by.halatsevich.storage.model.util.IdGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +20,9 @@ public class BookStorage {
     }
 
     public boolean addBook(Book book) {
-        if (storage.size() >= MAX_CAPACITY) {
+        if (storage.size() + 1 >= MAX_CAPACITY) {
             return false;
         }
-        book.setBookId(IdGenerator.generateId());
         return storage.add(book);
     }
 

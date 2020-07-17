@@ -55,7 +55,8 @@ public class RemoveBookByIdCommandTest {
         bookParameters.put("id", "-87");
         Map<String, String> actual = command.execute(bookParameters);
         Map<String, String> expected = new HashMap<>();
-        expected.put("result of command ->", "Book was not found in a storage");
+        expected.put("result of command ->",
+                "by.halatsevich.storage.exception.DaoException: Book was not found in a storage");
         assertEquals(actual, expected);
     }
 }
