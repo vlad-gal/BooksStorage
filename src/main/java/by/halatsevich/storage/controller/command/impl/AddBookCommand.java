@@ -1,10 +1,10 @@
 package by.halatsevich.storage.controller.command.impl;
 
 import by.halatsevich.storage.controller.command.Command;
+import by.halatsevich.storage.controller.command.CommandParameter;
 import by.halatsevich.storage.exception.ServiceException;
 import by.halatsevich.storage.model.service.BookService;
 import by.halatsevich.storage.model.service.impl.BookServiceImpl;
-import by.halatsevich.storage.controller.command.CommandParameter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,7 @@ public class AddBookCommand implements Command {
             boolean isAdd = bookService.addBookIntoStorage(bookParameters);
             result.put(CommandParameter.RESULT_KEY, String.valueOf(isAdd));
         } catch (ServiceException e) {
-            logger.log(Level.ERROR,"Error while adding book",e);
+            logger.log(Level.ERROR, "Error while adding book", e);
             result.put(CommandParameter.RESULT_KEY, e.getMessage());
             return result;
         }
