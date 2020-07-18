@@ -6,6 +6,9 @@ import by.halatsevich.storage.model.comparator.SortingTag;
 import by.halatsevich.storage.model.dao.BookStorageDao;
 import by.halatsevich.storage.model.entity.Book;
 import by.halatsevich.storage.model.entity.BookStorage;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,6 +16,7 @@ import java.util.List;
 
 public class BookStorageDaoImpl implements BookStorageDao {
     private static BookStorageDaoImpl instance;
+    private static final Logger logger = LogManager.getLogger();
 
     private BookStorageDaoImpl() {
     }
@@ -32,16 +36,25 @@ public class BookStorageDaoImpl implements BookStorageDao {
                 throw new DaoException("Book is present in storage");
             }
         }
-        return bookStorage.addBook(book);
+        boolean result = bookStorage.addBook(book);
+        if (result) {
+            logger.log(Level.DEBUG, "Book added into storage");
+        }
+        return result;
     }
 
     @Override
     public boolean removeBookById(long id) throws DaoException {
         BookStorage bookStorage = BookStorage.getInstance();
+        boolean result;
         for (int i = 0; i < bookStorage.size(); i++) {
             Book book = bookStorage.getBook(i);
             if (book.getBookId() == id) {
-                return bookStorage.removeBook(book);
+                result = bookStorage.removeBook(book);
+                if (result) {
+                    logger.log(Level.DEBUG, "Book was removed from storage");
+                }
+                return result;
             }
         }
         throw new DaoException("Book was not found in a storage");
@@ -63,6 +76,7 @@ public class BookStorageDaoImpl implements BookStorageDao {
         for (Book book : removedBooks) {
             bookStorage.removeBook(book);
         }
+        logger.log(Level.DEBUG, "Books were removed");
         return true;
     }
 
@@ -73,6 +87,7 @@ public class BookStorageDaoImpl implements BookStorageDao {
         for (int i = 0; i < bookStorage.size(); i++) {
             allBooks.add(bookStorage.getBook(i));
         }
+        logger.log(Level.DEBUG, "All books selected");
         return allBooks;
     }
 
@@ -81,6 +96,7 @@ public class BookStorageDaoImpl implements BookStorageDao {
         BookStorage bookStorage = BookStorage.getInstance();
         for (int i = 0; i < bookStorage.size(); i++) {
             if (bookStorage.getBook(i).getBookId() == id) {
+                logger.log(Level.DEBUG, "Book with id={} found", id);
                 return bookStorage.getBook(i);
             }
         }
@@ -96,6 +112,9 @@ public class BookStorageDaoImpl implements BookStorageDao {
             if (bookName.equals(name)) {
                 foundBooks.add(bookStorage.getBook(i));
             }
+        }
+        if (!foundBooks.isEmpty()) {
+            logger.log(Level.DEBUG, "Books with name={} found", name);
         }
         return foundBooks;
     }
@@ -118,6 +137,9 @@ public class BookStorageDaoImpl implements BookStorageDao {
                 }
             }
         }
+        if (!foundBooks.isEmpty()) {
+            logger.log(Level.DEBUG, "Books with authors={} found", authors);
+        }
         return foundBooks;
     }
 
@@ -130,6 +152,9 @@ public class BookStorageDaoImpl implements BookStorageDao {
             if (bookPages == pages) {
                 foundBooks.add(bookStorage.getBook(i));
             }
+        }
+        if (!foundBooks.isEmpty()) {
+            logger.log(Level.DEBUG, "Books with count of pages={} found", pages);
         }
         return foundBooks;
     }
@@ -144,6 +169,9 @@ public class BookStorageDaoImpl implements BookStorageDao {
                 foundBooks.add(bookStorage.getBook(i));
             }
         }
+        if (!foundBooks.isEmpty()) {
+            logger.log(Level.DEBUG, "Books with price={} found", price);
+        }
         return foundBooks;
     }
 
@@ -156,6 +184,7 @@ public class BookStorageDaoImpl implements BookStorageDao {
             sortedBooks.add(bookStorage.getBook(i));
         }
         sortedBooks.sort(bookComparator);
+        logger.log(Level.DEBUG, "Books was sorted by tag={}", tag);
         return sortedBooks;
     }
 }
